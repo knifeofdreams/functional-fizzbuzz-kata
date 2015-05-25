@@ -9,8 +9,5 @@ def fizzbuzz_of_n(number):
         return str(number)
 
 
-def fizzbuzz(number = 100):
-    if number < 1:
-        return []
-
-    return fizzbuzz(number - 1) + [fizzbuzz_of_n(number)]
+def fizzbuzz():
+    return map(fizzbuzz_of_n, range(1,101))

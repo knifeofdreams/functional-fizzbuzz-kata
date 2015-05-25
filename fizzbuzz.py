@@ -1,5 +1,7 @@
-def fizzbuzz():
-    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,101))
+import itertools
+
+def fizzbuzz(n = 100):
+    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,n + 1))
 
 def const(constant):
     def return_const(x):
@@ -10,13 +12,16 @@ def concat(f, g):
     return lambda number: f(number) + g(number)
 
 def multiples_of(n):
-    return map(lambda i: i * n, range(1, 10))
+    i = 0
+    while True:
+        i += 1
+        yield n*i
 
 def substract(list_from, what_list):
     return list(set(list_from) - set(what_list))
 
-def take(n, list):
-    return list[:n]
+def take(n, generator):
+    return list(itertools.islice(generator, 0, n))
 
 def repeat(value, times):
     return [value] * times

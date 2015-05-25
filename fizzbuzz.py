@@ -26,11 +26,13 @@ def repeat(value, times):
 def for_all(value, function):
     return dict(zip(value, repeat(function, len(value))))
 
-def combine_dicts(*dict_args):
-    result = {}
-    for dictionary in dict_args:
-        result.update(dictionary)
+def combine_two_dicts(lhs, rhs):
+    result = lhs.copy()
+    result.update(rhs)
     return result
+
+def combine_dicts(*dict_args):
+    return reduce(combine_two_dicts, dict_args, {})
 
 def return_(function):
     return lambda x: function(x)

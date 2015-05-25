@@ -12,10 +12,7 @@ def concat(f, g):
     return lambda number: f(number) + g(number)
 
 def multiples_of(n):
-    i = 0
-    while True:
-        i += 1
-        yield n*i
+    return itertools.count(n, n)
 
 def substract(list_from, what_list):
     return list(set(list_from) - set(what_list))

@@ -30,19 +30,22 @@ def combine_dicts(*dict_args):
         result.update(dictionary)
     return result
 
+def return_(function):
+    return lambda x: function(x)
+
 multiples_of_3 = take(4, multiples_of(3))
 multiples_of_5 = take(2, multiples_of(5))
 multiples_of_both = [0]
 others = substract(range(1,15), multiples_of_3 + multiples_of_5)
 
-id_ = lambda number: str(number)
+it_ = lambda number: str(number)
 fizz_ = const("Fizz")
 buzz_ = const("Buzz")
 fizzbuzz_ = concat(fizz_, buzz_)
 
 fizzbuzz_lambdas = combine_dicts(
-    for_all(multiples_of_3, fizz_),
-    for_all(multiples_of_5, buzz_),
-    for_all(multiples_of_both, fizzbuzz_),
-    for_all(others, id_)
+    for_all(multiples_of_3, return_(fizz_)),
+    for_all(multiples_of_5, return_(buzz_)),
+    for_all(multiples_of_both, return_(fizzbuzz_)),
+    for_all(others, return_(it_))
 )

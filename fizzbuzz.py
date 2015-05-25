@@ -1,7 +1,12 @@
 import itertools
 
 def fizzbuzz(n = 100):
-    return map(lambda number: fizzbuzz_lambdas[number % 15](number), range(1,n + 1))
+    return map(
+        get_fizzbuzz_for, range(1,n + 1)
+    )
+
+def get_fizzbuzz_for(number):
+    return fizzbuzz_lambdas[number % 15](number)
 
 def const(constant):
     def return_const(x):

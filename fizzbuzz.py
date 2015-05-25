@@ -1,12 +1,10 @@
 import itertools
 
 def fizzbuzz(n = 100):
-    return map(
-        get_fizzbuzz_for, range(1,n + 1)
-    )
+    return take(n, fizzbuzz_generator())
 
-def get_fizzbuzz_for(number):
-    return fizzbuzz_lambdas[number % 15](number)
+def fizzbuzz_generator():
+    return itertools.imap(lambda function, i: function(i), itertools.cycle(fizzbuzz_lambdas.values()), itertools.count(1,1))
 
 def const(constant):
     def return_const(x):
@@ -44,7 +42,7 @@ def return_(function):
 
 multiples_of_3 = take(4, multiples_of(3))
 multiples_of_5 = take(2, multiples_of(5))
-multiples_of_both = [0]
+multiples_of_both = [15]
 others = substract(range(1,15), multiples_of_3 + multiples_of_5)
 
 it_ = lambda number: str(number)

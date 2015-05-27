@@ -35,8 +35,8 @@ def combine_two_dicts(lhs, rhs):
 def combine_dicts(*dict_args):
     return reduce(combine_two_dicts, dict_args, {})
 
-def return_(function):
-    return lambda x: function(x)
+def return_(x):
+    return x
 
 multiples_of_3 = take(4, multiples_of(3))
 multiples_of_5 = take(2, multiples_of(5))

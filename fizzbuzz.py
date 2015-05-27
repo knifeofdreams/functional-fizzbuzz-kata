@@ -7,9 +7,7 @@ def fizzbuzz_generator():
     return itertools.imap(lambda function, i: function(i), itertools.cycle(fizzbuzz_lambdas.values()), itertools.count(1,1))
 
 def const(constant):
-    def return_const(x):
-        return lambda number: x
-    return return_const(constant)
+    return lambda number: constant
 
 def concat(f, g):
     return lambda number: f(number) + g(number)
